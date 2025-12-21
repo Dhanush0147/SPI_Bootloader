@@ -4,16 +4,14 @@ module Spi_flash_controller (
     input  wire        clk,
     input  wire        reset,
     input  wire        miso,
-
-    output reg         mosi,
+    output          mosi,
     output wire        sclk,
     output reg         cs,
-
     output reg [31:0]  instruction,
     output reg [31:0]  dummy_pc,
     output reg [31:0]  dummy_data,
     output reg         write_en,
-    output reg         prg_mode
+    output reg         prg_mode,cs_en
 );
 
     assign sclk = clk & ~cs;
@@ -29,54 +27,55 @@ module Spi_flash_controller (
     reg [2:0]  state;
     reg [31:0] shift_reg;
     reg [5:0]  bit_cnt;
-    reg        wait_flag;
+    reg        wait_flag,miso_reg;
     reg [31:0] pc_counter;
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             state       <= IDLE;
-            cs          <= 1'b1;
+           cs_en <= 1'b0;
             bit_cnt     <= 6'd0;
-            shift_reg   <= 32'd0;
             write_en    <= 1'b0;
             prg_mode    <= 1'b0;
             wait_flag   <= 1'b0;
             pc_counter  <= 32'd0;
+            shift_reg   <= 32'h03000000;
+
         end else begin
             write_en <= 1'b0;
 
             case (state)
-
             IDLE: begin
-                cs          <= 1'b1;
-                shift_reg   <= 32'h03000000;
-                bit_cnt     <= 6'd31;
+               cs_en <=1'b0;
+                bit_cnt     <= 6'd33;
                 pc_counter  <= 32'd0;
                 prg_mode    <= 1'b0;
                 state       <= SEND_CMD;
             end
 
             SEND_CMD: begin
-                cs      <= 1'b0;
+                cs_en      <= 1'b1;
                 bit_cnt <= bit_cnt - 1'b1;
+                
                 if (bit_cnt == 6'd24)
                     state <= SEND_ADDR;
             end
 
             SEND_ADDR: begin
                 bit_cnt <= bit_cnt - 1'b1;
-                if (bit_cnt == 6'd0) begin
+                if (bit_cnt == 6'd1) begin
                     wait_flag <= 1'b0;
                     state     <= WAIT_READ;
                 end
             end
 
             WAIT_READ: begin
-                if (!wait_flag)
-                    wait_flag <= 1'b1;
-                else begin
-                    bit_cnt <= 6'd31;
+                if (!wait_flag) begin                     
+                wait_flag <= 1'b1;      
+                 bit_cnt <= 6'd31;
                     state   <= READ_DATA;
+                  
+
                 end
             end
 
@@ -99,19 +98,29 @@ module Spi_flash_controller (
             end
 
             END: begin
-                cs       <= 1'b1;
+                cs_en       <= 1'b0;
                 prg_mode <= 1'b1;
             end
 
             endcase
+            if ((state == SEND_CMD || state == SEND_ADDR) & (!cs) )
+                shift_reg <= {shift_reg[30:0],1'b1};
         end
     end
 
-    always @(negedge clk) begin
-        if (!cs) begin
-            if (state == SEND_CMD || state == SEND_ADDR)
-                mosi <= shift_reg[bit_cnt];
+    always @(negedge clk or posedge reset) begin
+    if(reset)  begin 
+        cs<=1'b1;
+    end 
+     else begin 
+        if(cs_en )  begin 
+            cs<=1'b0;              
+            miso_reg <= shift_reg[31];
+            
         end
+            
     end
+    end 
 
+assign mosi =(miso_reg)&(~cs);
 endmodule

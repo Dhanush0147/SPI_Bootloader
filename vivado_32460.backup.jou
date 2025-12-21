@@ -1,0 +1,106 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Sat Jan 17 15:12:40 2026
+# Process ID         : 32460
+# Current directory  : C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent7868 C:\Users\SIVA DHANUSH REDDY\Downloads\SPI_Bootloader\Spi_Flashcontroller.xpr
+# Log file           : C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/vivado.log
+# Journal file       : C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader\vivado.jou
+# Running On         : Dhanush
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12650H
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 10
+# CPU Logical cores  : 16
+# Host memory        : 16831 MB
+# Swap memory        : 26960 MB
+# Total Virtual      : 43791 MB
+# Available Virtual  : 14409 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.xpr}
+open_run impl_1
+launch_simulation
+open_wave_config {C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/tb_flash_behav.wcfg}
+source tb_flash.tcl
+run 1000 us
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/wait_pending}} 
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/bit_idx}} 
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/bit_cnt}} 
+relaunch_sim
+relaunch_sim
+run 1000 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 1000 us
+run 1000 us
+run 1000 us
+relaunch_sim
+run 1000 us
+relaunch_sim
+run 1000 us
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/wait_pending}} 
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/dut/state}} 
+relaunch_sim
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/dut/rx_cnt}} 
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/dut/tx_cnt}} 
+relaunch_sim
+relaunch_sim
+run 1000 us
+relaunch_sim
+run 1000 us
+relaunch_sim
+run 1000 us
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/dut/wait_flag}} 
+relaunch_sim
+run 1000 us
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/dut/sclk}} 
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 1000 us
+run 1000 us
+run 1000 us
+run 1000 us
+run 1000 us
+run 1000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+run 10000 us
+reset_run synth_1
+launch_runs synth_1 -jobs 16
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+current_design impl_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+current_wave_config {tb_flash_behav.wcfg}
+add_wave {{/tb_flash/dut/bit_cnt}} 
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 10000 us
+save_wave_config {C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/tb_flash_behav.wcfg}
+close_sim

@@ -3,106 +3,163 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_flash_behav.wdb" id="1">
+      <db_ref path="tb_spi_flash_read_correct_edges_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb_flash" />
+            <top_module name="tb_spi_flash_read_correct_edges" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="981.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,503.001 ns"></ZoomEndTime>
-      <Cursor1Time time="1,181.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.752 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,712.753 ns"></ZoomEndTime>
+      <Cursor1Time time="1,345.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="205"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <NameColumnWidth column_width="173"></NameColumnWidth>
+      <ValueColumnWidth column_width="164"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
-   <wvobject fp_name="/tb_flash/clk" type="logic">
+   <WVObjectSize size="35" />
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/reset" type="logic">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/miso" type="logic">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/miso" type="logic">
       <obj_property name="ElementShortName">miso</obj_property>
       <obj_property name="ObjectShortName">miso</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/mosi" type="logic">
-      <obj_property name="ElementShortName">mosi</obj_property>
-      <obj_property name="ObjectShortName">mosi</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/sclk" type="logic">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/sclk" type="logic">
       <obj_property name="ElementShortName">sclk</obj_property>
       <obj_property name="ObjectShortName">sclk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/cs" type="logic">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/cs" type="logic">
       <obj_property name="ElementShortName">cs</obj_property>
       <obj_property name="ObjectShortName">cs</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/instruction" type="array">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/instruction" type="array">
       <obj_property name="ElementShortName">instruction[31:0]</obj_property>
       <obj_property name="ObjectShortName">instruction[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/write_en" type="logic">
-      <obj_property name="ElementShortName">write_en</obj_property>
-      <obj_property name="ObjectShortName">write_en</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/prg_mode" type="logic">
-      <obj_property name="ElementShortName">prg_mode</obj_property>
-      <obj_property name="ObjectShortName">prg_mode</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/flash_mem" type="array">
-      <obj_property name="ElementShortName">flash_mem[0:255][31:0]</obj_property>
-      <obj_property name="ObjectShortName">flash_mem[0:255][31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/bit_cnt" type="array">
-      <obj_property name="ElementShortName">bit_cnt[31:0]</obj_property>
-      <obj_property name="ObjectShortName">bit_cnt[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/word_ptr" type="array">
-      <obj_property name="ElementShortName">word_ptr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">word_ptr[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/MAX_LINES" type="array">
-      <obj_property name="ElementShortName">MAX_LINES[31:0]</obj_property>
-      <obj_property name="ObjectShortName">MAX_LINES[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/dut/shift_reg" type="array">
-      <obj_property name="ElementShortName">shift_reg[31:0]</obj_property>
-      <obj_property name="ObjectShortName">shift_reg[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/dut/pc_counter" type="array">
-      <obj_property name="ElementShortName">pc_counter[31:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_counter[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/dut/shift_reg" type="array">
-      <obj_property name="ElementShortName">shift_reg[31:0]</obj_property>
-      <obj_property name="ObjectShortName">shift_reg[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_flash/dut/dummy_pc" type="array">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dummy_pc" type="array">
       <obj_property name="ElementShortName">dummy_pc[31:0]</obj_property>
       <obj_property name="ObjectShortName">dummy_pc[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/dut/dummy_data" type="array">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dummy_data" type="array">
       <obj_property name="ElementShortName">dummy_data[31:0]</obj_property>
       <obj_property name="ObjectShortName">dummy_data[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/current_reg" type="array">
-      <obj_property name="ElementShortName">current_reg[31:0]</obj_property>
-      <obj_property name="ObjectShortName">current_reg[31:0]</obj_property>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/write_en" type="logic">
+      <obj_property name="ElementShortName">write_en</obj_property>
+      <obj_property name="ObjectShortName">write_en</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/word_ptr" type="array">
-      <obj_property name="ElementShortName">word_ptr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">word_ptr[31:0]</obj_property>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/prg_mode" type="logic">
+      <obj_property name="ElementShortName">prg_mode</obj_property>
+      <obj_property name="ObjectShortName">prg_mode</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_flash/dut/bit_cnt" type="array">
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/flash_mem" type="array">
+      <obj_property name="ElementShortName">flash_mem[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">flash_mem[0:3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/address" type="array">
+      <obj_property name="ElementShortName">address[23:0]</obj_property>
+      <obj_property name="ObjectShortName">address[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/tx_shift" type="array">
+      <obj_property name="ElementShortName">tx_shift[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_shift[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/bit_cnt" type="array">
+      <obj_property name="ElementShortName">bit_cnt[16:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_cnt[16:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/word_ptr" type="array">
+      <obj_property name="ElementShortName">word_ptr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">word_ptr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/miso_r" type="logic">
+      <obj_property name="ElementShortName">miso_r</obj_property>
+      <obj_property name="ObjectShortName">miso_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/rx_count" type="array">
+      <obj_property name="ElementShortName">rx_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/mosi" type="logic">
+      <obj_property name="ElementShortName">mosi</obj_property>
+      <obj_property name="ObjectShortName">mosi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/miso" type="logic">
+      <obj_property name="ElementShortName">miso</obj_property>
+      <obj_property name="ObjectShortName">miso</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/instruction" type="array">
+      <obj_property name="ElementShortName">instruction[31:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/dummy_pc" type="array">
+      <obj_property name="ElementShortName">dummy_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dummy_pc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/dummy_data" type="array">
+      <obj_property name="ElementShortName">dummy_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dummy_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/write_en" type="logic">
+      <obj_property name="ElementShortName">write_en</obj_property>
+      <obj_property name="ObjectShortName">write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/prg_mode" type="logic">
+      <obj_property name="ElementShortName">prg_mode</obj_property>
+      <obj_property name="ObjectShortName">prg_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/state" type="array">
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/shift_reg" type="array">
+      <obj_property name="ElementShortName">shift_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">shift_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/bit_cnt" type="array">
       <obj_property name="ElementShortName">bit_cnt[5:0]</obj_property>
       <obj_property name="ObjectShortName">bit_cnt[5:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/wait_flag" type="logic">
+      <obj_property name="ElementShortName">wait_flag</obj_property>
+      <obj_property name="ObjectShortName">wait_flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/pc_counter" type="array">
+      <obj_property name="ElementShortName">pc_counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_counter[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/opcode" type="array">
+      <obj_property name="ElementShortName">opcode[7:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/sclk" type="logic">
+      <obj_property name="ElementShortName">sclk</obj_property>
+      <obj_property name="ObjectShortName">sclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/mosi" type="logic">
+      <obj_property name="ElementShortName">mosi</obj_property>
+      <obj_property name="ObjectShortName">mosi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_spi_flash_read_correct_edges/dut/cs" type="logic">
+      <obj_property name="ElementShortName">cs</obj_property>
+      <obj_property name="ObjectShortName">cs</obj_property>
    </wvobject>
 </wave_config>
