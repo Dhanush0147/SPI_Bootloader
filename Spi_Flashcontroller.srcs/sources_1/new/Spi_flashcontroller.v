@@ -1,158 +1,117 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 19.06.2025 18:27:03
-// Design Name: 
-// Module Name: SPI_flashcontroller
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+module Spi_flash_controller (
+    input  wire        clk,
+    input  wire        reset,
+    input  wire        miso,
 
-module SPI_flashcontroller(
-input  miso,
-input clk ,
-input reset,
-output  reg mosi ,
-output  sclk,
-output  cs,
-output reg [31:0] instruction,
-output reg [31:0] dummy_pc,
-output reg write_en,
-output reg prg_mode
-    );
-    
-reg rst;
-reg [6:0]timer;
-reg[31:0] data_buffer;
-reg [31:0] shift_reg;// hard coded instruction 0x03 - read , 0x000000 starting address
-reg [31:0] Dummy_Pc;
-reg /*shift_enable,tmr_enable,*/buffer_en,mosi_en,sclk_en,CS;
-reg start_hap;
-reg [1:0] state ;
-localparam[1:0] 
-        IDLE = 2'b00,
-        START = 2'b01,
-        READ = 2'b10,
-        END = 2'b11; 
-        
-assign sclk = clk & sclk_en;
-assign cs = CS;
- always@(negedge reset)begin
-    rst <= 1'b1;
-    state <= IDLE;
- end
- 
- 
-always@(*)begin
-    
-    case(state)
-        IDLE:begin
-            CS = 1'b1;
-            mosi_en = 1'b0;
-            buffer_en = 1'b0;
-            sclk_en = 1'b0;
-            Dummy_Pc = 32'd0;
-            timer = 12'd0;
-            prg_mode = 1'b0;
-        end
-        
-        START:begin
-            CS = 1'b0;
-            sclk_en = 1'b1;
-        end
-        
-        READ:begin
-            mosi_en = 1'b0;
-        end
-        
-        END:begin
-            CS = 1'b1;
-            sclk_en = 1'b0;
-            write_en = 1'b0;
-        end
-        
-    endcase
-    
-end
- 
- always@(posedge clk)begin
-    if(rst)begin
-        case(state)
-            IDLE:begin
-                state <= START; 
-                shift_reg <= 32'h03000001;
-                rst <= 1'b0;
-                start_hap <= 1'b1;
+    output reg         mosi,
+    output wire        sclk,
+    output reg         cs,
+
+    output reg [31:0]  instruction,
+    output reg [31:0]  dummy_pc,
+    output reg [31:0]  dummy_data,
+    output reg         write_en,
+    output reg         prg_mode
+);
+
+    assign sclk = clk & ~cs;
+
+    localparam [2:0]
+        IDLE       = 3'd0,
+        SEND_CMD   = 3'd1,
+        SEND_ADDR  = 3'd2,
+        WAIT_READ  = 3'd3,
+        READ_DATA  = 3'd4,
+        END        = 3'd5;
+
+    reg [2:0]  state;
+    reg [31:0] shift_reg;
+    reg [5:0]  bit_cnt;
+    reg        wait_flag;
+    reg [31:0] pc_counter;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            state       <= IDLE;
+            cs          <= 1'b1;
+            bit_cnt     <= 6'd0;
+            shift_reg   <= 32'd0;
+            write_en    <= 1'b0;
+            prg_mode    <= 1'b0;
+            wait_flag   <= 1'b0;
+            pc_counter  <= 32'd0;
+        end else begin
+            write_en <= 1'b0;
+
+            case (state)
+
+            IDLE: begin
+                cs          <= 1'b1;
+                shift_reg   <= 32'h03000000;
+                bit_cnt     <= 6'd31;
+                pc_counter  <= 32'd0;
+                prg_mode    <= 1'b0;
+                state       <= SEND_CMD;
             end
-        endcase
+
+            SEND_CMD: begin
+                cs      <= 1'b0;
+                bit_cnt <= bit_cnt - 1'b1;
+                if (bit_cnt == 6'd24)
+                    state <= SEND_ADDR;
+            end
+
+            SEND_ADDR: begin
+                bit_cnt <= bit_cnt - 1'b1;
+                if (bit_cnt == 6'd0) begin
+                    wait_flag <= 1'b0;
+                    state     <= WAIT_READ;
+                end
+            end
+
+            WAIT_READ: begin
+                if (!wait_flag)
+                    wait_flag <= 1'b1;
+                else begin
+                    bit_cnt <= 6'd31;
+                    state   <= READ_DATA;
+                end
+            end
+
+            READ_DATA: begin
+                shift_reg <= {shift_reg[30:0], miso};
+                bit_cnt   <= bit_cnt - 1'b1;
+
+                if (bit_cnt == 6'd0) begin
+                    dummy_data  <= shift_reg;
+                    dummy_pc    <= pc_counter;
+                    instruction <= shift_reg;
+                    write_en    <= 1'b1;
+                    pc_counter  <= pc_counter + 1;
+
+                    if (shift_reg == 32'hFFFFFFFF)
+                        state <= END;
+                    else
+                        bit_cnt <= 6'd31;
+                end
+            end
+
+            END: begin
+                cs       <= 1'b1;
+                prg_mode <= 1'b1;
+            end
+
+            endcase
+        end
     end
-    
-    case(state)
-            START:begin
-                if(timer == 32)begin
-                    state <= READ;
-                    timer <= 0;
-                    
-                end
-            end
-            
-            READ:begin
-                if(timer == 32)begin
-                    timer <= 0;
-                end
-                else if(timer == 1 && !start_hap)begin
-                    write_en <= 1'b0;
-                    data_buffer <= shift_reg;
-                end
-                
-                
-                if(data_buffer == 32'hffffffff)begin
-                    state <= END;
-                end
-            end
-            
-        endcase
- end
- 
- always@(negedge clk)begin
- 
- timer = timer + 1 ;
- 
-    case(state)
-        START:begin
-            mosi_en = 1'b1;
-            mosi <= shift_reg[31];
-            shift_reg <= {shift_reg[30:0],1'b0};
+
+    always @(negedge clk) begin
+        if (!cs) begin
+            if (state == SEND_CMD || state == SEND_ADDR)
+                mosi <= shift_reg[bit_cnt];
         end
-        
-        READ:begin
-            shift_reg <= {shift_reg[30:0],miso};
-            if(timer == 2 && !start_hap && shift_reg != 32'hffffffff)begin
-                    instruction <= data_buffer;
-                    dummy_pc <= Dummy_Pc;
-                    Dummy_Pc <= Dummy_Pc + 1;
-                    write_en <= 1'b1;
-                end
-            else if(timer == 2 && start_hap) begin
-                start_hap <= 1'b0;
-            end
-        end
-        END:begin
-            prg_mode = 1'b1;
-        end
-    endcase
- end
- 
+    end
+
 endmodule

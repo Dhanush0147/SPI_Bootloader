@@ -24,7 +24,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log Spi_flashcontroller.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Spi_flashcontroller.tcl" );
+         "-log top_flash.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_flash.tcl" );
 
 
 

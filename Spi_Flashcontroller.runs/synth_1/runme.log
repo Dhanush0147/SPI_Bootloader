@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log Spi_flashcontroller.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Spi_flashcontroller.tcl
+    with args -log top_flash.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_flash.tcl
 
 
 
@@ -8,109 +8,135 @@
   **** SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
   **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
   **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-  **** Start of session at: Sun Jan 11 14:49:53 2026
+  **** Start of session at: Fri Jan 16 18:22:13 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source Spi_flashcontroller.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 412.172 ; gain = 105.688
-Command: synth_design -top Spi_flashcontroller -part xc7a100tcsg324-1
+source top_flash.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/utils_1/imports/synth_1/Spi_flashcontroller.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/utils_1/imports/synth_1/Spi_flashcontroller.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top_flash -part xc7a100tcsg324-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 25668
+INFO: [Synth 8-7075] Helper process launched with PID 20148
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1087.230 ; gain = 467.465
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1097.453 ; gain = 469.289
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'Spi_flashcontroller' [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'Spi_flashcontroller' (0#1) [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:23]
-WARNING: [Synth 8-3330] design Spi_flashcontroller has an empty top module
+INFO: [Synth 8-6157] synthesizing module 'top_flash' [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/top_module.v:1]
+INFO: [Synth 8-6157] synthesizing module 'Spi_flash_controller' [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:3]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'Spi_flash_controller' (0#1) [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:3]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.runs/synth_1/.Xil/Vivado-25504-Dhanush/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.runs/synth_1/.Xil/Vivado-25504-Dhanush/realtime/blk_mem_gen_0_stub.v:6]
+WARNING: [Synth 8-689] width (32) of port connection 'addra' does not match port width (4) of module 'blk_mem_gen_0' [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/top_module.v:41]
+INFO: [Synth 8-6157] synthesizing module 'pc_reader' [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/pc_reader.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'pc_reader' (0#1) [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/pc_reader.v:1]
+INFO: [Synth 8-6157] synthesizing module 'led_driver' [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:3]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:44]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:67]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:90]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:113]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:136]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:159]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:182]
+INFO: [Synth 8-226] default block is never used [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:205]
+INFO: [Synth 8-6155] done synthesizing module 'led_driver' (0#1) [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/LED_DRIVER.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'top_flash' (0#1) [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/top_module.v:1]
+WARNING: [Synth 8-7137] Register dummy_data_reg in module Spi_flash_controller has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:88]
+WARNING: [Synth 8-7137] Register dummy_pc_reg in module Spi_flash_controller has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:89]
+WARNING: [Synth 8-7137] Register instruction_reg in module Spi_flash_controller has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sources_1/new/Spi_flashcontroller.v:90]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1211.188 ; gain = 583.023
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1211.188 ; gain = 583.023
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1211.188 ; gain = 583.023
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1192.219 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1211.188 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc]
-WARNING: [Vivado 12-584] No ports matched 'clk'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:4]
-CRITICAL WARNING: [Common 17-161] Invalid option value 'IOSTANDARD' specified for 'objects'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:4]
-WARNING: [Vivado 12-584] No ports matched 'clk'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:5]
-CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports clk]'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:5]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-584] No ports matched 'reset'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:8]
-CRITICAL WARNING: [Common 17-161] Invalid option value 'IOSTANDARD' specified for 'objects'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:8]
-WARNING: [Vivado 12-584] No ports matched 'reset'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:9]
-CRITICAL WARNING: [Vivado 12-4739] set_false_path:No valid object(s) found for '-from [get_ports reset]'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:9]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-584] No ports matched 'mosi'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:13]
-CRITICAL WARNING: [Common 17-161] Invalid option value 'IOSTANDARD' specified for 'objects'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:13]
-WARNING: [Vivado 12-584] No ports matched 'miso'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:14]
-CRITICAL WARNING: [Common 17-161] Invalid option value 'IOSTANDARD' specified for 'objects'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:14]
-WARNING: [Vivado 12-584] No ports matched 'cs'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:15]
-CRITICAL WARNING: [Common 17-161] Invalid option value 'IOSTANDARD' specified for 'objects'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:15]
-WARNING: [Vivado 12-584] No ports matched 'sclk'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:16]
-CRITICAL WARNING: [Common 17-161] Invalid option value 'IOSTANDARD' specified for 'objects'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:16]
-WARNING: [Vivado 12-584] No ports matched 'mosi'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:19]
-WARNING: [Vivado 12-584] No ports matched 'cs'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:19]
-WARNING: [Vivado 12-584] No ports matched 'sclk'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:19]
-WARNING: [Vivado 12-646] clock 'spi_clk' not found. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:19]
-CRITICAL WARNING: [Vivado 12-4739] set_output_delay:No valid object(s) found for '-objects [get_ports {mosi cs sclk}]'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:19]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-584] No ports matched 'miso'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:20]
-WARNING: [Vivado 12-646] clock 'spi_clk' not found. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:20]
-CRITICAL WARNING: [Vivado 12-4739] set_input_delay:No valid object(s) found for '-objects [get_ports miso]'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:20]
-Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
-WARNING: [Vivado 12-584] No ports matched 'instruction[*]'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:23]
-WARNING: [Vivado 12-584] No ports matched 'dummy_pc[*]'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:23]
-WARNING: [Vivado 12-584] No ports matched 'write_en'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:23]
-WARNING: [Vivado 12-584] No ports matched 'prg_mode'. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:23]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc:23]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-Finished Parsing XDC File [C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc]
+Parsing XDC File [c:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'instr_mem'
+Finished Parsing XDC File [c:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'instr_mem'
+Parsing XDC File [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc]
+Finished Parsing XDC File [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/constrs_1/new/Flahs_const.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_flash_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_flash_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1192.219 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1279.418 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1192.219 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1279.418 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1279.418 ; gain = 651.254
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1279.418 ; gain = 651.254
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for instr_mem. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1279.418 ; gain = 651.254
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Spi_flash_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                           000001 |                              000
+                SEND_CMD |                           000010 |                              001
+               SEND_ADDR |                           000100 |                              010
+               WAIT_READ |                           001000 |                              011
+               READ_DATA |                           010000 |                              100
+                     END |                           100000 |                              101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'Spi_flash_controller'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1192.219 ; gain = 572.453
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1279.418 ; gain = 651.254
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input   26 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 4     
+	               26 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 13    
++---Muxes : 
+	   6 Input   32 Bit        Muxes := 2     
+	   6 Input    6 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 2     
+	   6 Input    1 Bit        Muxes := 10    
+	  16 Input    1 Bit        Muxes := 56    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -127,27 +153,26 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3330] design Spi_flashcontroller has an empty top module
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1199.383 ; gain = 579.617
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1279.418 ; gain = 651.254
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1371.457 ; gain = 751.691
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1403.496 ; gain = 775.332
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1371.457 ; gain = 751.691
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1434.762 ; gain = 806.598
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1381.012 ; gain = 761.246
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1434.762 ; gain = 806.598
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -165,74 +190,92 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 Report BlackBoxes: 
-+-+--------------+----------+
-| |BlackBox name |Instances |
-+-+--------------+----------+
-+-+--------------+----------+
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |blk_mem_gen_0 |         1|
++------+--------------+----------+
 
 Report Cell Usage: 
-+------+--------------------+------+
-|      |Cell                |Count |
-+------+--------------------+------+
-|1     |Spi_flashcontroller |     1|
-+------+--------------------+------+
++------+------------+------+
+|      |Cell        |Count |
++------+------------+------+
+|1     |blk_mem_gen |     1|
+|2     |BUFG        |     1|
+|3     |CARRY4      |     6|
+|4     |LUT1        |     2|
+|5     |LUT2        |    42|
+|6     |LUT3        |    15|
+|7     |LUT4        |    35|
+|8     |LUT5        |     3|
+|9     |LUT6        |    58|
+|10    |MUXF7       |     4|
+|11    |FDCE        |    49|
+|12    |FDPE        |     2|
+|13    |FDRE        |    65|
+|14    |IBUF        |     3|
+|15    |OBUF        |    18|
++------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:32 . Memory (MB): peak = 1597.715 ; gain = 977.949
-Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1597.715 ; gain = 977.949
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:36 . Memory (MB): peak = 1629.195 ; gain = 932.801
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1629.195 ; gain = 1001.031
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1597.715 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1629.195 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1599.859 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1629.195 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 2efb4c29
+Synth Design complete | Checksum: 305772c
 INFO: [Common 17-83] Releasing license: Synthesis
-14 Infos, 21 Warnings, 11 Critical Warnings and 0 Errors encountered.
+42 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 1599.859 ; gain = 1187.688
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-INFO: [Common 17-1381] The checkpoint 'C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.runs/synth_1/Spi_flashcontroller.dcp' has been generated.
-INFO: [Vivado 12-24828] Executing command : report_utilization -file Spi_flashcontroller_utilization_synth.rpt -pb Spi_flashcontroller_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jan 11 14:50:45 2026...
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.statsThreshold
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1629.195 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.runs/synth_1/top_flash.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file top_flash_utilization_synth.rpt -pb top_flash_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Jan 16 18:23:04 2026...

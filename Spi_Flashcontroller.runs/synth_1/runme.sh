@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/SIVA DHANUSH REDDY/Downloads/Spi_Flashcontroller/Spi_Flashcontroller.runs/synth_1'
+HD_PWD='C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log Spi_flashcontroller.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Spi_flashcontroller.tcl
+EAStep vivado -log top_flash.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_flash.tcl
