@@ -26,6 +26,9 @@ Waveform verifying the SPI Read command (`0x03`), address transmission, and data
 
 ![output](output.png)
 
+Waveform Veified Using ILA Debugging Core 
+![output].(ILA_output.png)
+
 ### FPGA Implementation
 The design was successfully validated on hardware with the following performance metrics.
 
