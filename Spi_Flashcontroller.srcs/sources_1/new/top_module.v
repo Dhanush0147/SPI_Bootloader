@@ -1,5 +1,5 @@
 module top_flash (
-    input  wire clk_top,
+    input  wire clk_top,   // 50 MHz
     input  wire rst,
 
     input  wire miso_spi,
@@ -11,15 +11,31 @@ module top_flash (
     output wire CA, CB, CC, CD, CE, CF, CG
 );
 
+    // -------------------------
+    // SPI controller outputs
+    // -------------------------
     wire [31:0] dummy_pc;
     wire [31:0] dummy_data;
-    wire write_en;
-    wire prg_mode;
+    wire        write_en;
+    wire        prg_mode;
+    wire [31:0] register;
 
-    wire [31:0] bram_rdata;
+    // -------------------------
+    // PC outputs
+    // -------------------------
     wire [31:0] pc_rd;
     wire        pc_en;
 
+    // -------------------------
+    // BRAM signals
+    // -------------------------
+    wire [3:0]  bram_addr;      // depth = 16
+    wire        bram_we;
+    wire [31:0] bram_rdata;
+
+    // -------------------------
+    // SPI Flash Controller
+    // -------------------------
     Spi_flash_controller spi_ctrl (
         .clk(clk_top),
         .reset(rst),
@@ -31,29 +47,48 @@ module top_flash (
         .dummy_pc(dummy_pc),
         .dummy_data(dummy_data),
         .write_en(write_en),
-        .prg_mode(prg_mode)
+        .prg_mode(prg_mode),
+        .register(register)
     );
 
-    blk_mem_gen_0 instr_mem (
-        .clka(clk_top),
-        .ena(1'b1),
-        .wea(write_en),
-        .addra(dummy_pc),
-        .dina(dummy_data),
-        .douta(bram_rdata)
-    );
-
+    // -------------------------
+    // PC Reader
+    // -------------------------
     pc_reader pc_unit (
         .clk(clk_top),
         .reset(rst),
         .enable(prg_mode),
         .pc(pc_rd),
-        .en(pc_en)
+        .en(prg_mode)
     );
 
+    // -------------------------
+    // Address & write control
+    // -------------------------
+    // Program mode  : use dummy_pc, write enabled
+    // Execute mode  : use pc_rd, read only
+    assign bram_addr = (prg_mode) ? pc_rd[3:0]   : dummy_pc[3:0];
+    assign bram_we   = (~prg_mode) & write_en;
+
+    // -------------------------
+    // Instruction Memory (BRAM)
+    // -------------------------
+    blk_mem_gen_0 instr_mem (
+        .clka   (clk_top),
+        .ena    (1'b1),
+        .wea    (bram_we),
+        .addra  (bram_addr),
+        .dina   (dummy_data),
+        .douta  (bram_rdata)
+    );
+
+    // -------------------------
+    // 7-Segment Display
+    // Show instruction during execution
+    // -------------------------
     led_driver led (
         .clock(clk_top),
-        .data(bram_rdata),
+        .data(prg_mode ? bram_rdata : register),
         .AN(AN),
         .CA(CA), .CB(CB), .CC(CC),
         .CD(CD), .CE(CE), .CF(CF), .CG(CG)

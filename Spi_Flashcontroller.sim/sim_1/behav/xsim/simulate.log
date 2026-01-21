@@ -3,5 +3,7 @@ Time resolution is 1 ps
  RX DATA[1] = bbbb2222
  RX DATA[2] = cccc3333
  RX DATA[3] = ffffffff
+ OPCODE OK: 03
+ADDRESS OK: 000000
 ✅ PASS: 3 READS + TERMINATION
-$finish called at time : 5040 ns : File "C:/Users/SIVA DHANUSH REDDY/Downloads/SPI_Bootloader/Spi_Flashcontroller.srcs/sim_1/new/new_tb.v" Line 166
+$finish called at time : 5040 ns : File "C:/Users/SIVA DHANUSH REDDY/Downloads/UART_SPI/SPI_Bootloader/Spi_Flashcontroller.srcs/sim_1/new/new_tb.v" Line 166
